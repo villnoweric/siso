@@ -3,7 +3,7 @@
 require_once('functions/index.php');
 
 if(logged_in() == false){
-  header('Location: /login');
+  header('Location: ./login');
   die;
 }
 
@@ -14,7 +14,7 @@ switch($_GET['page']){
                 $sql = "DELETE FROM " . PREFIX . "kiosks WHERE ID=" . $_GET['content'];
 
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /admin/kiosks');
+                    header('Location: ./admin/kiosks');
                 } else {
                     echo "Error deleting record: " . $conn->error;
                 }
@@ -35,7 +35,7 @@ switch($_GET['page']){
                 
                 $sql = "UPDATE " . PREFIX . "users SET ACCESS='" . serialize($array) . "' WHERE ID='" . $_GET['user'] . "'";
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /admin/users/edit/' . $_GET['user']);
+                    header('Location: ./admin/users/edit/' . $_GET['user']);
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -56,7 +56,7 @@ switch($_GET['page']){
                 
                 $sql = "UPDATE " . PREFIX . "users SET ACCESS='" . serialize($array) . "' WHERE ID='" . $_GET['user'] . "'";
                 if ($conn->query($sql) === TRUE) {
-                   header('Location: /admin/users/edit/' . $_GET['user']);
+                   header('Location: ./admin/users/edit/' . $_GET['user']);
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -73,7 +73,7 @@ switch($_GET['page']){
                 $sql = "INSERT INTO " . PREFIX . "users (USERNAME,FULLNAME,PASSWORD,EMAIL,ROLE,ACCESS) VALUES ('$username','$fullname','$password','$email','0','$access')";
                 echo $sql;
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /admin/users');
+                    header('Location: ./admin/users');
                     die;
                 } else {
                     echo "Error deleting record: " . $conn->error;
@@ -84,7 +84,7 @@ switch($_GET['page']){
                 $hash = md5($_GET['content']);
                 $sql = "UPDATE " . PREFIX . "users SET PASSWORD='" . $hash . "' WHERE ID='" . $_GET['user'] . "'";
                 if ($conn->query($sql) === TRUE) {
-                   header('Location: /admin/users/edit/' . $_GET['user']);
+                   header('Location: ./admin/users/edit/' . $_GET['user']);
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -94,7 +94,7 @@ switch($_GET['page']){
             case 'makeadmin':
                 $sql = "UPDATE " . PREFIX . "users SET ROLE='1' WHERE ID='" . $_GET['content'] . "'";
                 if ($conn->query($sql) === TRUE) {
-                   header('Location: /admin/users/edit/' . $_GET['content']);
+                   header('Location: ./admin/users/edit/' . $_GET['content']);
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -104,7 +104,7 @@ switch($_GET['page']){
             case 'removeadmin':
                 $sql = "UPDATE " . PREFIX . "users SET ROLE='0' WHERE ID='" . $_GET['content'] . "'";
                 if ($conn->query($sql) === TRUE) {
-                   header('Location: /admin/users/edit/' . $_GET['content']);
+                   header('Location: ./admin/users/edit/' . $_GET['content']);
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -120,7 +120,7 @@ switch($_GET['page']){
                 $sql = "DELETE FROM " . PREFIX . "programs WHERE ID=" . $_GET['content'];
 
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /admin/programs');
+                    header('Location: ./admin/programs');
                     die;
                 } else {
                     echo "Error deleting record: " . $conn->error;
@@ -142,7 +142,7 @@ switch($_GET['page']){
                 $sql = "INSERT INTO " . PREFIX . "programs (name, kiosks, settings) VALUES ('" . $_GET['content'] . "', '" . serialize(array()) . "', '" . $settingsarray . "')";
 
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /admin/programs');
+                    header('Location: ./admin/programs');
                     die;
                 } else {
                     echo "Error deleting record: " . $conn->error;
@@ -165,7 +165,7 @@ switch($_GET['page']){
                 
                 $sql = "UPDATE " . PREFIX . "programs SET kiosks='" . serialize($array) . "' WHERE name='" . str_replace("-"," ",$_GET['program']) . "'";
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /programs/' . $_GET['program'] . '/kiosks');
+                    header('Location: ./programs/' . $_GET['program'] . '/kiosks');
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -186,7 +186,7 @@ switch($_GET['page']){
                 
                 $sql = "UPDATE " . PREFIX . "programs SET kiosks='" . serialize($array) . "' WHERE name='" . str_replace("-"," ",$_GET['program']) . "'";
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /programs/' . $_GET['program'] . '/kiosks');
+                    header('Location: ./programs/' . $_GET['program'] . '/kiosks');
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -211,7 +211,7 @@ switch($_GET['page']){
                 
                 $sql = "UPDATE " . PREFIX . "programs SET settings='" . serialize($programs) . "' WHERE name='" . str_replace("-"," ",$_GET['program']) . "'";
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: /programs/' . $_GET['program'] . '/settings');
+                    header('Location: ./programs/' . $_GET['program'] . '/settings');
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;

@@ -19,14 +19,14 @@
     
     <link rel="icon" href="/favicon.ico">
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="/css/material.css" type="text/css" />
-	<link rel="stylesheet" href="/css/style.css" type="text.css" />
+    <link rel="stylesheet" href="<?= PATH ?>/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="<?= PATH ?>/css/material.css" type="text/css" />
+	<link rel="stylesheet" href="<?= PATH ?>/css/style.css" type="text.css" />
 	
 	<link rel="manifest" href="manifest.json">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="/js/signature/jSignature.min.js"></script>
+	<script src="<?= PATH ?>/js/signature/jSignature.min.js"></script>
     <script>
     
     function navigator_Go(url) {
@@ -162,7 +162,7 @@
     </div>
     
     
-	<script src="js/bootstrap.js"></script>
-	<script src="js/material.js"></script>
+	<script src="<?= PATH ?>/js/bootstrap.js"></script>
+	<script src="<?= PATH ?>/js/material.js"></script>
   </body>
 </html>

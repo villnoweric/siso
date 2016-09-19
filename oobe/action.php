@@ -29,7 +29,7 @@ switch($_POST['install_step']){
         fwrite($dbconfig, $config);
         fclose($dbconfig);
         
-        require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/config/db.php');
+        require_once('../config/db.php');
         $conn = mysqli_connect(SERVER, USER, PASSWORD, DB);
         
         // sql to create table
@@ -129,7 +129,7 @@ switch($_POST['install_step']){
         $pass_hash = md5($_SESSION['admin_password']);
         $array = array();
         
-        require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/config/db.php');
+        require_once('../config/db.php');
         $conn = mysqli_connect(SERVER, USER, PASSWORD, DB);
         
         $sql = "INSERT INTO " . PREFIX . "users (USERNAME, FULLNAME, EMAIL, PASSWORD, ROLE, ACCESS)

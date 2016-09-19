@@ -19,14 +19,14 @@ if(logged_in() == false){
     
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js"></script>
+    <script src="<?= PATH ?>/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -46,17 +46,17 @@ if(logged_in() == false){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><?= DISTRICT_NAME ?></a>
+          <a class="navbar-brand" href="<?= PATH ?>"><?= DISTRICT_NAME ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome <?= user_info('fullname'); ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/help">Help</a></li>
-                <li><a href="/admin/updates">Updates</a></li>
+                <li><a href="<?= PATH ?>/help">Help</a></li>
+                <li><a href="<?= PATH ?>/admin/updates">Updates</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="/login?action=logout">Logout</a></li>
+                <li><a href="<?= PATH ?>/login?action=logout">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -67,8 +67,8 @@ if(logged_in() == false){
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-           <ul>
-             <li>Installation</li>
+           <ul class="nav nav-sidebar">
+             <li><a href="#installation">Installation</a></li>
            </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -93,6 +93,6 @@ if(logged_in() == false){
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="<?= PATH ?>/js/bootstrap.min.js"></script>
   </body>
 </html>

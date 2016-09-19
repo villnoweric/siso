@@ -24,14 +24,14 @@ if(user_info('role') != 1){
     
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js"></script>
+    <script src="<?= PATH ?>/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -60,7 +60,7 @@ if(user_info('role') != 1){
               <ul class="dropdown-menu">
                 <li><a href="#">Separated link</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="/login?action=logout">Logout</a></li>
+                <li><a href="<?= PATH ?>/login?action=logout">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -73,10 +73,10 @@ if(user_info('role') != 1){
         <div class="col-sm-3 col-md-2 sidebar">
           <?php if(user_role() == 1){ ?>
           <ul class="nav nav-sidebar">
-            <li><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/admin/users">Users</a></li>
-            <li><a href="/admin/programs">Programs</a></li>
-            <li><a href="/admin/kiosks">Kiosks</a></li>
+            <li><a href="<?= PATH ?>">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="<?= PATH ?>/admin/users">Users</a></li>
+            <li><a href="<?= PATH ?>/admin/programs">Programs</a></li>
+            <li><a href="<?= PATH ?>/admin/kiosks">Kiosks</a></li>
           </ul>
           <?php } ?>
         </div>
@@ -111,9 +111,9 @@ if(user_info('role') != 1){
                       while($row2 = $result2->fetch_assoc()) {
                         
                         if(in_array($row2['ID'], $array)){
-                          $button = "<a class='btn btn-danger' href='/action.php?page=users&action=remove&content=" . $row2['ID'] . "&user=" . $_GET['user'] . "'>Remove</a>";
+                          $button = "<a class='btn btn-danger' href='" . PATH . "/action.php?page=users&action=remove&content=" . $row2['ID'] . "&user=" . $_GET['user'] . "'>Remove</a>";
                         }else{
-                          $button = "<a class='btn btn-success' href='/action.php?page=users&action=add&content=" . $row2['ID'] . "&user=" . $_GET['user'] . "'>Add</a>";
+                          $button = "<a class='btn btn-success' href='" . PATH . "/action.php?page=users&action=add&content=" . $row2['ID'] . "&user=" . $_GET['user'] . "'>Add</a>";
                         }
                         
                         
@@ -132,7 +132,7 @@ if(user_info('role') != 1){
           </div>
           <?php if(user_info('ID') != $_GET['user']){ ?>
           <h3>Password Reset</h3>
-          <form action="/action.php" class="form-group">
+          <form action="<?= PATH ?>/action.php" class="form-group">
             <input type="hidden" name="user" value="<?= $_GET['user'] ?>">
             <input type="hidden" name="action" value="reset">
             <input type="hidden" name="page" value="users">
@@ -140,7 +140,7 @@ if(user_info('role') != 1){
             <input class="btn btn-danger" type="submit" value="Reset"/>
           </form>
           <h3>Permissions</h3>
-            <?php if($row['ROLE'] != 1){ ?><a href="/action.php?page=users&action=makeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Administrator</a><?php }else{ ?><a href="/action.php?page=users&action=removeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Standard User</a><?php } ?>
+            <?php if($row['ROLE'] != 1){ ?><a href="<?= PATH ?>/action.php?page=users&action=makeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Administrator</a><?php }else{ ?><a href="<?= PATH ?>/action.php?page=users&action=removeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Standard User</a><?php } ?>
           <?php }else{ echo '<div class="alert alert-warning">You cannot change your own settings.</div>'; } ?>
         </div>
       </div>
@@ -150,6 +150,6 @@ if(user_info('role') != 1){
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="<?= PATH ?>/js/bootstrap.min.js"></script>
   </body>
 </html>

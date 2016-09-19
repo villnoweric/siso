@@ -4,13 +4,13 @@ if(isset($_GET['action'])){
   if($_GET['action'] == 'logout'){
     setcookie('USERNAME', null, -1);
     setcookie('PASSWORD', null, -1);
-    header('Location: /');
+    header('Location: ./');
     die;
   }
 }
 
 if(logged_in()){
-  header('Location: /');
+  header('Location: ./');
   die;
 }
 
@@ -30,7 +30,7 @@ if(isset($_POST['username'])){
     }
       setcookie('USERNAME', $username, $expire);
       setcookie('PASSWORD', $password, $expire);
-      header('Location: /');
+      header('Location: ./');
       die;
   }else{
      $error = $conn->error;
@@ -80,6 +80,10 @@ if(isset($_POST['username'])){
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div class="hidden-lg">
+          <br><br>
+          <a class="btn btn-lg btn-info btn-block" href="kiosk">Is this a Kiosk?</a>
+        </div>
       </form>
     </div><!-- /container -->
   </body>

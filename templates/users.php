@@ -21,14 +21,14 @@
         while($row = $result->fetch_assoc()) {
             if($row['ROLE'] == 1){ $role = ' <span class="label label-default">Administrator</span>'; }else{ $role =''; }
             if(empty($row["ACCESS"])){ $implode = implode(',', unserialize($row["ACCESS"])); }else{ $implode = ""; }
-            echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["FULLNAME"].$role .  "</td><td>" . $row["USERNAME"]. "</td><td>" . $row["EMAIL"]. "</td><td>" . $implode . "</td><td><a class='btn btn-info' href='/admin/users/edit/" . $row['ID'] . "'>Edit</a></td></tr>";
+            echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["FULLNAME"].$role .  "</td><td>" . $row["USERNAME"]. "</td><td>" . $row["EMAIL"]. "</td><td>" . $implode . "</td><td><a class='btn btn-info' href='" . PATH . "/admin/users/edit/" . $row['ID'] . "'>Edit</a></td></tr>";
         }
     } else {
         echo "0 results";
     }
     
     ?>
-    <tr><form action="/action.php">
+    <tr><form action="<?= PATH ?>/action.php">
       <td><input type="hidden" name="action" value="create"><input type="hidden" name="page" value="users"></td>
       <td><input class="form-control" type="text" name="name"></td>
       <td><input class="form-control" type="text" name="username"></td>

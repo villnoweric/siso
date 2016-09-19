@@ -22,7 +22,7 @@ if(isset($_GET['register'])){
         die();
     }
     
-   header('Location: /kiosk');
+   header('Location: ' . PATH . '/kiosk');
 }
 
 if(isset($_GET['unregister'])){
@@ -53,7 +53,7 @@ if(isset($_COOKIE['KIOSK_ID'])){
     $sql="SELECT * FROM " . PREFIX . "kiosks WHERE apid=" . $_COOKIE['KIOSK_ID'];
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result) == 0){
-        header('Location: /kiosk?unregister=1');
+        header('Location: ./kiosk?unregister=1');
     }
     
 }
@@ -83,7 +83,7 @@ if(!isset($_COOKIE['KIOSK_ID'])){
     $title = "Divice Not Registered";
 }else{
     $title =  DISTRICT_NAME . "<div class='pull-right'>" . $_COOKIE['KIOSK_ID'] . "</div>";
-    $body = "<a href='?unregister=1' class='btn btn-danger'>UnRegister</a> <a href='/kiosk' class='btn btn-success'>Refresh</a><br><br>";
+    $body = "<a href='./kiosk' class='btn btn-success'>Refresh</a><br><br>";
 }
 ?>
 
@@ -135,7 +135,7 @@ if(!isset($_COOKIE['KIOSK_ID'])){
             echo 'Enlisted Programs';
             echo '<div class="list-group">';
             while($row = $result->fetch_assoc()) {
-                echo '<a href="javascript:navigator_Go(\'/kiosk/' . str_replace(" ","-",$row['name']) . '\')" class="list-group-item">' . $row['name'] . '</a>';
+                echo '<a href="javascript:navigator_Go(\'' . PATH . '/kiosk/' . str_replace(" ","-",$row['name']) . '\')" class="list-group-item">' . $row['name'] . '</a>';
             }
         }else{
         }

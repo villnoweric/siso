@@ -21,12 +21,12 @@ $program['settings'] = unserialize($program['settings']);
     <title><?= DISTRICT_NAME ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
-    <link href="/css/fix.php?color=<?= COLOR ?>" rel="stylesheet">
+    <link href="<?= PATH ?>/css/dashboard.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/fix.php?color=<?= COLOR ?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -51,12 +51,12 @@ $program['settings'] = unserialize($program['settings']);
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <?php if(user_info('role') == 1){ ?>
-            <li><a href="/">Dashboard</a></li>
+            <li><a href="<?= PATH ?>/">Dashboard</a></li>
             <li class="dropdown active">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li<?php if($_GET['action']=='settings'){ echo ' class="active"'; } ?>><a href="/programs/<?= $_GET['program'] ?>/settings">Settings</a></li>
-                <li<?php if($_GET['action']=='kiosks'){ echo ' class="active"'; } ?>><a href="/programs/<?= $_GET['program'] ?>/kiosks">Kiosks</a></li>
+                <li<?php if($_GET['action']=='settings'){ echo ' class="active"'; } ?>><a href="<?= PATH ?>/programs/<?= $_GET['program'] ?>/settings">Settings</a></li>
+                <li<?php if($_GET['action']=='kiosks'){ echo ' class="active"'; } ?>><a href="<?= PATH ?>/programs/<?= $_GET['program'] ?>/kiosks">Kiosks</a></li>
               </ul>
             </li>
             <?php } ?>
@@ -95,7 +95,7 @@ $program['settings'] = unserialize($program['settings']);
                     }else{
                       $active = "";
                     }
-                      echo '<li' . $active . '><a href="/programs/' . str_replace(" ","-",$row['name']) . '">' . $row['name'] . '</a></li>';
+                      echo '<li' . $active . '><a href="' . PATH . '/programs/' . str_replace(" ","-",$row['name']) . '">' . $row['name'] . '</a></li>';
                   }
               }else{
               }
@@ -107,7 +107,7 @@ $program['settings'] = unserialize($program['settings']);
           <h1 class="page-header"><?= ucfirst($_GET['action']) ?>  <span class="pull-right"><small><?= str_replace("-"," ",$_GET['program']); ?></small></span></h1>
           <?php if($_GET['action']=='settings'){ ?>
           <div class="col-md-4">
-          <form action="/action.php" method="get">
+          <form action="<?= PATH ?>/action.php" method="get">
           <h3 class="form-inline">Select a <input class="form-control input-lg" type="text" name="desc_title" value="<?= $program['settings']['desc_title'] ?>"></h3>
           <ul class="list-group">
             <textarea name="descs" class="form-control" rows="10" columns="20"><?php
@@ -179,9 +179,9 @@ $program['settings'] = unserialize($program['settings']);
                   while($row = $result->fetch_assoc()) {
                     
                       if(in_array($row['apid'], $kiosks)){
-                        $button = "<a class='btn btn-danger' href='/action.php?page=settings&action=remove&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Remove</a>";
+                        $button = "<a class='btn btn-danger' href='" . PATH . "action.php?page=settings&action=remove&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Remove</a>";
                       }else{
-                        $button = "<a class='btn btn-success' href='/action.php?page=settings&action=add&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Add</a>";
+                        $button = "<a class='btn btn-success' href='" . PATH . "/action.php?page=settings&action=add&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Add</a>";
                       }
                     
                       echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["apid"]. "</td><td>" . $row["name"]. "</td><td>" . date('F jS, Y',$row["expire"]) . "</td><td>" . $button . "</td></tr>";
@@ -203,6 +203,6 @@ $program['settings'] = unserialize($program['settings']);
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="<?= PATH ?>/js/bootstrap.min.js"></script>
   </body>
 </html>

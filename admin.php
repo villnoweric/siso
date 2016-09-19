@@ -1,22 +1,24 @@
-<?php require_once('functions/index.php');
+<?php
 
-if(!file_exists(__DIR__ . '/config/db.php')){
-  header('Location: /oobe');
+if(!file_exists('./config/db.php')){
+  header('Location: ./oobe');
   die();
 }
 
-if(!file_exists(__DIR__ . '/config/district.php')){
-  header('Location: /oobe');
+if(!file_exists('./config/district.php')){
+  header('Location: ./oobe');
   die();
 }
+
+require_once('functions/index.php');
 
 if(logged_in() == false){
-  header('Location: /login');
+  header('Location: ./login');
   die;
 }
 
 if(user_info('role') != 1){
-  header('Location: /programs');
+  header('Location: ./programs');
   die;
 }
 
@@ -34,14 +36,14 @@ if(user_info('role') != 1){
     
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js"></script>
+    <script src="<?= PATH ?>/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -68,10 +70,10 @@ if(user_info('role') != 1){
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome <?= user_info('fullname'); ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/help">Help</a></li>
-                <li><a href="/admin/updates">Updates</a></li>
+                <li><a href="<?= PATH ?>/help">Help</a></li>
+                <li><a href="<?= PATH ?>/admin/updates">Updates</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="/login?action=logout">Logout</a></li>
+                <li><a href="<?= PATH ?>/login?action=logout">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -84,15 +86,15 @@ if(user_info('role') != 1){
         <div class="col-sm-3 col-md-2 sidebar">
           <?php if(user_role() == 1){ ?>
           <ul class="nav nav-sidebar">
-            <li<?php if(empty($_GET['page'])) { echo ' class="active"';} ?>><a href="/">Overview <span class="sr-only">(current)</span></a></li>
-            <li<?php if($_GET['page']=='users') { echo ' class="active"';} ?>><a href="/admin/users">Users</a></li>
-            <li<?php if($_GET['page']=='programs') { echo ' class="active"';} ?>><a href="/admin/programs">Programs</a></li>
-            <li<?php if($_GET['page']=='kiosks') { echo ' class="active"';} ?>><a href="/admin/kiosks">Kiosks</a></li>
+            <li<?php if(empty($_GET['page'])) { echo ' class="active"';} ?>><a href="<?= PATH ?>/">Overview <span class="sr-only">(current)</span></a></li>
+            <li<?php if($_GET['page']=='users') { echo ' class="active"';} ?>><a href="<?= PATH ?>/admin/users">Users</a></li>
+            <li<?php if($_GET['page']=='programs') { echo ' class="active"';} ?>><a href="<?= PATH ?>/admin/programs">Programs</a></li>
+            <li<?php if($_GET['page']=='kiosks') { echo ' class="active"';} ?>><a href="<?= PATH ?>/admin/kiosks">Kiosks</a></li>
           </ul>
           <?php } ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <?php if(isset($_GET['page'])){ include_once(realpath($_SERVER['DOCUMENT_ROOT']) . '/templates/' . $_GET['page'] . '.php'); }else{ echo "TODO: Figgure out what to put here..."; } ?>
+          <?php if(isset($_GET['page'])){ require_once(__DIR__ . '/templates/' . $_GET['page'] . '.php'); }else{ echo "TODO: Figgure out what to put here..."; } ?>
         </div>
       </div>
     </div>
@@ -101,6 +103,6 @@ if(user_info('role') != 1){
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="<?= PATH ?>/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["apid"]. "</td><td>" . $row["name"]. "</td><td>" . date('F jS, Y',$row["expire"]) . "</td><td><a class='btn btn-danger' href='/action.php?page=kiosks&action=delete&content=" . $row['ID'] . "'>UnRegister</a></td></tr>";
+        echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["apid"]. "</td><td>" . $row["name"]. "</td><td>" . date('F jS, Y',$row["expire"]) . "</td><td><a class='btn btn-danger' href='" . PATH . "/action.php?page=kiosks&action=delete&content=" . $row['ID'] . "'>UnRegister</a></td></tr>";
     }
 } else {
     echo "<tr><td colspan='7'>0 results</td></tr>";

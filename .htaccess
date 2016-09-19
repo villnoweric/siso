@@ -23,6 +23,8 @@ RewriteRule ^$ admin.php [NC,L]
 RewriteRule ^(programs)/?$ programs.php [NC,L]
 RewriteRule ^programs/([a-z-]+)/kiosks/?$ settings.php?program=$1&action=kiosks [NC,L]
 RewriteRule ^programs/([a-z-]+)/settings/?$ settings.php?program=$1&action=settings [NC,L]
+RewriteRule ^programs/([a-z-]+)/list/?$ programs.php?program=$1 [NC,L,QSA]
+RewriteRule ^programs/([a-z-]+)/search/?$ search.php?program=$1 [NC,L,QSA]
 RewriteRule ^programs/([a-z-]+)/?$ programs.php?program=$1 [NC,L,QSA]
 
 #RewriteRule ^directory/ - [L,R=404]

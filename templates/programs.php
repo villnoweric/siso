@@ -18,14 +18,14 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
           if(!empty($row['kiosks'])){ $kiosks = implode(',', unserialize($row["kiosks"])); }else{ $kiosks = ''; }
-            echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["name"]. "</td><td>" . $kiosks . "</td><td><a class='btn btn-info' href='/programs/" .  str_replace(" ","-",$row['name']) . "/kiosks'>Kiosks</a> <a class='btn btn-info' href='/programs/" .  str_replace(" ","-",$row['name']) . "/settings'>Settings</a> <a class='btn btn-success' href='/programs/" . str_replace(" ","-",$row['name']) . "'>Open</a> <a class='btn btn-danger' href='/action.php?page=programs&action=delete&content=" . $row['ID'] . "'>Delete</a></td></tr>";
+            echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["name"]. "</td><td>" . $kiosks . "</td><td><a class='btn btn-info' href='../programs/" .  str_replace(" ","-",$row['name']) . "/kiosks'>Kiosks</a> <a class='btn btn-info' href='../programs/" .  str_replace(" ","-",$row['name']) . "/settings'>Settings</a> <a class='btn btn-success' href='../programs/" . str_replace(" ","-",$row['name']) . "'>Open</a> <a class='btn btn-danger' href='../action.php?page=programs&action=delete&content=" . $row['ID'] . "'>Delete</a></td></tr>";
         }
     } else {
         echo "0 results";
     }
     
     ?>
-    <tr><form action="/action.php">
+    <tr><form action="<?= PATH ?>/action.php">
       <td><input type="hidden" name="action" value="create"><input type="hidden" name="page" value="programs"></td>
       <td><input class="form-control" type="text" name="content"></td>
       <td></td>

@@ -1,7 +1,7 @@
 <?php require_once('functions/index.php');
 
 if(logged_in() == false){
-  header('Location: /login');
+  header('Location: ./login');
   die;
 }
 
@@ -61,10 +61,10 @@ function next_date($date){
     <title><?= DISTRICT_NAME ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/dashboard.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -89,12 +89,12 @@ function next_date($date){
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <?php if(user_info('role') == 1){ ?>
-            <li><a href="/">Dashboard</a></li>
+            <li><a href="<?= PATH ?>/">Dashboard</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li<?php if($row['name'] == str_replace("-"," ",$_GET['program'])){ $active = " class='active'"; }else{ $active = ""; } ?>><a href="<?= $_GET['program'] ?>/settings">Settings</a></li>
-                <li><a href="<?= $_GET['program'] ?>/kiosks">Kiosks</a></li>
+                <li<?php if($row['name'] == str_replace("-"," ",$_GET['program'])){ $active = " class='active'"; }else{ $active = ""; } ?>><a href="<?= PATH ?>/programs/<?= $_GET['program'] ?>/settings">Settings</a></li>
+                <li><a href="<?= PATH ?>/programs/<?= $_GET['program'] ?>/kiosks">Kiosks</a></li>
               </ul>
             </li>
             <?php } ?>
@@ -103,7 +103,7 @@ function next_date($date){
               <ul class="dropdown-menu">
                 <li><a href="#">Separated link</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="/login?action=logout">Logout</a></li>
+                <li><a href="<?= PATH ?>/login?action=logout">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -138,7 +138,7 @@ function next_date($date){
                     }else{
                       $active = "";
                     }
-                      echo '<li' . $active . '><a href="/programs/' . str_replace(" ","-",$row['name']) . '">' . $row['name'] . '</a></li>';
+                      echo '<li' . $active . '><a href="' . PATH . '/programs/' . str_replace(" ","-",$row['name']) . '">' . $row['name'] . '</a></li>';
                       $forward = str_replace(" ","-",$row['name']);
                   }
               }else{
@@ -287,6 +287,6 @@ function next_date($date){
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="<?= PATH ?>/js/bootstrap.min.js"></script>
   </body>
 </html>
