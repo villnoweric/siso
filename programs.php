@@ -171,12 +171,6 @@ function next_date($date){
                       echo "<li><a href='?date=" . $date . "&sort=" . $value . "'>" . $value . "</a></li>";
                     }
                     ?>
-                    <!--<li><a href="?date=<?php echo $date; ?>&sort=family">Family</a></li>
-                    <li><a href="?date=<?php echo $date; ?>&sort=sick">Sick</a></li>
-                    <li><a href="?date=<?php echo $date; ?>&sort=appointment">Appointment</a></li>
-                    <li><a href="?date=<?php echo $date; ?>&sort=pseo">PSEO</a></li>
-                    <li><a href="?date=<?php echo $date; ?>&sort=funeral">Funeral</a></li>
-                    <li><a href="?date=<?php echo $date; ?>&sort=collegevisit">College Visit</a></li>-->
                     <?php if($program['settings']['other'] == 1){ ?><li><a href="?date=<?php echo $date; ?>&sort=other">Other</a></li><?php } ?>
                   </ul>
                 </li>

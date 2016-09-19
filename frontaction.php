@@ -61,15 +61,11 @@ if($program['settings']['order'] == '1'){
     //ECL
     if($task == 'in'){
         if($instances == 0){
-            echo 'SIGN IN';
             if($program['settings']['signature'] == '0'){
-                echo '.20.';
                 $sql = "INSERT INTO " . PREFIX . "data (Name, Signin, Description, Program) VALUES ('$Name', '$Time', '$Reason', '$Program')";
-                echo $sql;
             }else{
-                echo '.21.';
-                $Signature = $_POST['Signature'];
-                $sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
+                //$Signature = $_POST['Signature'];
+                //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
             }
             if ($conn->query($sql) === TRUE) {
                 header('Location: ./kiosk/' . $_POST['redirect']);
@@ -117,26 +113,79 @@ if($program['settings']['order'] == '1'){
     //Attendance
     if($task == 'in'){
         if($instances == 0){
-            
+            if($program['settings']['signature'] == '0'){
+                $sql = "INSERT INTO " . PREFIX . "data (Name, Signin, Description, Program) VALUES ('$Name', '$Time', '$Reason', '$Program')";
+            }else{
+                //$Signature = $_POST['Signature'];
+                //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
+            }
+            if ($conn->query($sql) === TRUE) {
+                header('Location: ./kiosk/' . $_POST['redirect']);
+                die;
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
         }else{
             if($si == 1 && $so == 0){
-                
+                header('Location: ./kiosk/' . $_POST['redirect'] . '?m=8');
+                die;
             }elseif($si == 1 && $so == 1){
-                
+                header('Location: ./kiosk/' . $_POST['redirect'] . '?m=8');
+                die;
             }elseif($si == 0 && $so == 1){
-                
+                $sql = "UPDATE " . PREFIX . "data SET Signin='$Time' WHERE Name='$Name' AND Program='$Program' AND Signout LIKE '%$Check_Time%' AND Signin IS NULL";
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./kiosk/' . $_POST['redirect']);
+                    die;
+                } else {
+                    echo "Error updating record: " . $conn->error;
+                }
             }
         }
     }else{
         if($instances == 0){
-           
+           if($program['settings']['signature'] == '0'){
+                $sql = "INSERT INTO " . PREFIX . "data (Name, Signout, Description, Program) VALUES ('$Name', '$Time', '$Reason', '$Program')";
+            }else{
+                //$Signature = $_POST['Signature'];
+                //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
+            }
+            if ($conn->query($sql) === TRUE) {
+                header('Location: ./kiosk/' . $_POST['redirect']);
+                die;
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
         }else{
             if($si == 1 && $so == 0){
-               
+               if($program['settings']['signature'] == '0'){
+                    $sql = "INSERT INTO " . PREFIX . "data (Name, Signout, Description, Program) VALUES ('$Name', '$Time', '$Reason', '$Program')";
+                }else{
+                    //$Signature = $_POST['Signature'];
+                    //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
+                }
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./kiosk/' . $_POST['redirect']);
+                    die;
+                } else {
+                    echo "Error updating record: " . $conn->error;
+                }
             }elseif($si == 1 && $so == 1){
-                
+                if($program['settings']['signature'] == '0'){
+                    $sql = "INSERT INTO " . PREFIX . "data (Name, Signout, Description, Program) VALUES ('$Name', '$Time', '$Reason', '$Program')";
+                }else{
+                    //$Signature = $_POST['Signature'];
+                    //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
+                }
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./kiosk/' . $_POST['redirect']);
+                    die;
+                } else {
+                    echo "Error updating record: " . $conn->error;
+                }
             }elseif($si == 0 && $so == 1){
-                
+                header('Location: ./kiosk/' . $_POST['redirect'] . '?m=10');
+                die;
             }
         }
     }

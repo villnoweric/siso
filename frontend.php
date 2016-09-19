@@ -91,6 +91,9 @@
                             case 9:
                                 echo "<div class='alert alert-dismissable alert-danger'>You have already been here today.";
                                 break;
+                            case 10:
+                                echo "<div class='alert alert-dismissable alert-danger'>You have already signed out.";
+                                break;
                             case 69:
                                 echo "<div class='alert alert-dismissable alert-danger'>FATAL: There was a Fatal Error (code:" . $_GET['c'] . ") contact support.";
                         }
