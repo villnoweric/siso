@@ -1,0 +1,28 @@
+RewriteEngine On
+
+#ADMIN
+RewriteRule ^admin/users/edit/([a-z,0-9]+)/?$ edit.php?user=$1 [NC,L]
+RewriteRule ^(admin)/?$ admin.php [NC,L]
+
+RewriteRule ^admin/([a-z]+)/?$ admin.php?page=$1 [NC,L,QSA]
+
+#KIOSK
+RewriteRule ^(kiosk)/?$ kiosk.php [NC,L]
+RewriteRule ^kiosk/([a-z-]+)/?$ frontend.php?program=$1 [NC,L,QSA]
+
+#HELP
+RewriteRule ^(help)/?$ help.php [NC,L]
+RewriteRule ^help/([a-z]+)/?$ help.php?page=$1 [NC,L]
+
+# login
+RewriteRule ^(login)/?$ login.php [NC,L]
+
+# bare goes to the index
+RewriteRule ^$ admin.php [NC,L]
+
+RewriteRule ^(programs)/?$ programs.php [NC,L]
+RewriteRule ^programs/([a-z-]+)/kiosks/?$ settings.php?program=$1&action=kiosks [NC,L]
+RewriteRule ^programs/([a-z-]+)/settings/?$ settings.php?program=$1&action=settings [NC,L]
+RewriteRule ^programs/([a-z-]+)/?$ programs.php?program=$1 [NC,L,QSA]
+
+#RewriteRule ^directory/ - [L,R=404]
