@@ -9,6 +9,8 @@ $conn = mysqli_connect(SERVER, USER, PASSWORD, DB);
 //SCOOL SETTINGS
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/config/district.php');
 
+date_default_timezone_set(TIMEZONE);
+
 function user_role(){
     return 1;
 }
