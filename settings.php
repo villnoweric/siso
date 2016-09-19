@@ -131,15 +131,15 @@ $program['settings'] = unserialize($program['settings']);
           <input type="checkbox" name="other" value="1"<?php if($program['settings']['other'] == 1){ echo ' checked'; } ?>> Enable Other Option<br><br>
           
           <input type="hidden" name="single_instance" value="0" />
-          <input type="checkbox" name="single_instance" value="1"<?php if($program['settings']['single_instance'] == 1){ echo ' checked'; } ?>> Limit to Single Instance<br>
+          
           <input type="hidden" name="single_transaction" value="0" />
-          <input type="checkbox" name="single_transaction" value="1"<?php if($program['settings']['single_transaction'] == 1){ echo ' checked'; } ?>> Limit to Single Transaction<br>
+          
           <input type="hidden" name="require_first" value="0" />
-          <input type="checkbox" name="require_first" value="1"<?php if($program['settings']['require_first'] == 1){ echo ' checked'; } ?>> Require first action before second<br>
+          
           <input type="radio" name="order" value="1"<?php if($program['settings']['order'] == 1){ echo ' checked'; } ?>> Sign In > Sign Out &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="order" value="0"<?php if($program['settings']['order'] == 0){ echo ' checked'; } ?>> Sign Out > Sign In<br><br>
           
           <input type="hidden" name="signature" value="0" />
-          <input type="checkbox" name="signature" value="1"<?php if($program['settings']['signature'] == 1){ echo ' checked'; } ?>> Capture Signature<br>
+          <!--<input type="checkbox" name="signature" value="1"<?php if($program['settings']['signature'] == 1){ echo ' checked'; } ?>> Capture Signature<br>-->
           <input type="hidden" name="duration" value="0" />
           <input type="checkbox" name="duration" value="1"<?php if($program['settings']['duration'] == 1){ echo ' checked'; } ?>> Calculate Duration<br><br>
           <input class="btn btn-default" type="submit">
