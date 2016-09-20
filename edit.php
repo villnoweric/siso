@@ -5,9 +5,15 @@ if(logged_in() == false){
   die;
 }
 
-if(user_info('role') != 1){
+if(user_info('role') != 1 && !isset($_GET['referal'])){
   header('Location: /programs');
   die;
+}
+
+if(isset($_GET['referal'])){
+  $user = user_info('ID');
+}else{
+  $user = $_GET['user'];
 }
 
 ?>
@@ -71,7 +77,7 @@ if(user_info('role') != 1){
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <?php if(user_role() == 1){ ?>
+          <?php if(user_info('role') == 1){ ?>
           <ul class="nav nav-sidebar">
             <li><a href="<?= PATH ?>">Overview <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="<?= PATH ?>/admin/users">Users</a></li>
@@ -83,14 +89,14 @@ if(user_info('role') != 1){
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <?php
             //user loop
-            $sql = "SELECT * FROM " . PREFIX . "users WHERE ID='" . $_GET['user'] . "'";
+            $sql = "SELECT * FROM " . PREFIX . "users WHERE ID='" . $user . "'";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             $array = unserialize($row['ACCESS']);
-            
             ?>
           <h2 class="page-subheader"><?= $row['FULLNAME'] ?> <span class="pull-right"><small><?php if($row['ROLE'] != 1){ ?>Standard User<?php }else{ ?> Administrator <?php } ?></small></span></h2>
           <div class="table-responsive">
+            <?php if(user_info('role') == 1){ ?>
             <?php if($row['ROLE'] == 0){ ?>
             <table class="table table-striped">
               <thead>
@@ -111,9 +117,9 @@ if(user_info('role') != 1){
                       while($row2 = $result2->fetch_assoc()) {
                         
                         if(in_array($row2['ID'], $array)){
-                          $button = "<a class='btn btn-danger' href='" . PATH . "/action.php?page=users&action=remove&content=" . $row2['ID'] . "&user=" . $_GET['user'] . "'>Remove</a>";
+                          $button = "<a class='btn btn-danger' href='" . PATH . "/action.php?page=users&action=remove&content=" . $row2['ID'] . "&user=" . $user . "'>Remove</a>";
                         }else{
-                          $button = "<a class='btn btn-success' href='" . PATH . "/action.php?page=users&action=add&content=" . $row2['ID'] . "&user=" . $_GET['user'] . "'>Add</a>";
+                          $button = "<a class='btn btn-success' href='" . PATH . "/action.php?page=users&action=add&content=" . $row2['ID'] . "&user=" . $user . "'>Add</a>";
                         }
                         
                         
@@ -130,18 +136,22 @@ if(user_info('role') != 1){
             </table>
             <?php } ?>
           </div>
-          <?php if(user_info('ID') != $_GET['user']){ ?>
+          <?php } ?>
+          
+          
           <h3>Password Reset</h3>
           <form action="<?= PATH ?>/action.php" class="form-group">
-            <input type="hidden" name="user" value="<?= $_GET['user'] ?>">
+            <input type="hidden" name="user" value="<?= $user ?>">
             <input type="hidden" name="action" value="reset">
             <input type="hidden" name="page" value="users">
             <b>New Password:</b> <input class="form-control" type="password" name="content"><br>
             <input class="btn btn-danger" type="submit" value="Reset"/>
           </form>
+          <?php if(user_info('role') == 1){ ?>
+          <?php if(user_info('ID') != $user){ ?>
           <h3>Permissions</h3>
             <?php if($row['ROLE'] != 1){ ?><a href="<?= PATH ?>/action.php?page=users&action=makeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Administrator</a><?php }else{ ?><a href="<?= PATH ?>/action.php?page=users&action=removeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Standard User</a><?php } ?>
-          <?php }else{ echo '<div class="alert alert-warning">You cannot change your own settings.</div>'; } ?>
+          <?php }else{ echo '<div class="alert alert-warning">You cannot change your own settings.</div>'; } } ?>
         </div>
       </div>
     </div>

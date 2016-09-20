@@ -6,6 +6,8 @@ RewriteRule ^(admin)/?$ admin.php [NC,L]
 
 RewriteRule ^admin/([a-z]+)/?$ admin.php?page=$1 [NC,L,QSA]
 
+RewriteRule ^(profile)/?$ edit.php?referal=$1 [NC,L,QSA]
+
 #KIOSK
 RewriteRule ^(kiosk)/?$ kiosk.php [NC,L]
 RewriteRule ^kiosk/([a-z-]+)/?$ frontend.php?program=$1 [NC,L,QSA]
