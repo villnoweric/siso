@@ -63,7 +63,7 @@ $program['settings'] = unserialize($program['settings']);
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome <?= user_info('fullname'); ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Separated link</a></li>
+                <?php if(user_info('role') != 1){ ?><li><a href="/profile">Account Settings</a></li><?php } ?>
                 <li role="separator" class="divider"></li>
                 <li><a href="/login?action=logout">Logout</a></li>
               </ul>
