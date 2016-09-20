@@ -76,7 +76,12 @@
                     <div class="well">
                         <h2>Help</h2>
                         <p>
-                            <b>District Name</b>
+                            <b>Server Name</b><br>
+                            This is the address pf the Database. A common one is localhost.
+                        </p>
+                        <p>
+                            <b>Table Prefix</b><br>
+                            This is a prefix added to the tables to seperate them from other conflicting tables if there are any.
                         </p>
                     </div>
                 </div>

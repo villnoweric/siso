@@ -107,6 +107,7 @@ switch($_POST['install_step']){
     case 'general':
         $_SESSION['district_name'] = $_POST['district_name'];
         $_SESSION['timezone'] = $_POST['timezone'];
+        $_SESSION['dir_name'] = $_POST['dir_name'];
         header('Location: users.php');
         break;
     case 'users':
@@ -120,6 +121,7 @@ switch($_POST['install_step']){
         
         define('DISTRICT_NAME', '" . $_SESSION['district_name'] . "');
         define('TIMEZONE', '" . $_SESSION['timezone'] . "');
+        define('PATH', '" . $_SESSION['dir_name'] . "');
         //MORE SETTINGS TO COME!
         ";
         

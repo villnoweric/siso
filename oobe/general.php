@@ -55,6 +55,13 @@
                                       <option value="America/Chicago">America/Chicago</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label>Install Path</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon3"><?= $_SERVER['HTTP_HOST'] ?></span>
+                                        <input type="text" class="form-control" name="dir_name" aria-describedby="basic-addon3" value="<?php if(isset($_SESSION['dir_name'])){ echo $_SESSION['dir_name']; } ?>">
+                                    </div>
+                                </div>
                                 <div class="clearfix">
                                     <a class="pull-left btn btn-raised disabled">Previous Step</a><button type="submit" class="pull-right btn btn-raised">Next Step</button>
                                 </div>
@@ -67,7 +74,15 @@
                         <h2>Help</h2>
                         <p>
                             <b>District Name</b><br>
-                            <b>Time Zone</b>
+                            District Name is used to brand the entire system.
+                        </p>
+                        <p>
+                            <b>Time Zone</b><br>
+                            Select your timezone form the list.
+                        </p>
+                        <p>
+                            <b>Install Path</b>
+                            this is the subdirectory that SISO is installed in. Note: Please include a / at the begining, and DO NOT put a / at the end.
                         </p>
                     </div>
                 </div>
