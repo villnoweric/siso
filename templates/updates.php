@@ -5,7 +5,7 @@ ini_set('max_execution_time',-1); // Consider setting to -1? Otherwise, with thi
 error_reporting(0);
 
 
-$update_server = 'http://update-villnoweric.c9users.io/server/';
+$update_server = 'http://updates.ericvillnow.com/';
 $update_program = 'siso';
 
 //Check for an update. We have a simple file that has a new release version on each line. (1.00, 1.02, 1.03, etc.)
@@ -65,7 +65,7 @@ if ($getVersions != '')
                     if ( !is_dir( __dir__ . '/../'.$thisFileName) ) {
                         echo '<li>'.$thisFileName.'...........';
                         $contents = zip_entry_read($aF, zip_entry_filesize($aF));
-                        $contents = str_replace("rn", "n", $contents);
+                        //$contents = str_replace("rn", "n", $contents);
                         $updateThis =  fopen($thisFileName,'w');
                        
                         //If we need to run commands, then do it.
