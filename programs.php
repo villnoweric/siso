@@ -156,9 +156,16 @@ function next_date($date){
         <?php if(!empty($_GET['program'])){ ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="clearfix">
+            <form method="get" style="display:inline-block;">
+              <input type="hidden" name="date" value="<?= $date ?>">
+              <ul class="pagination">
+                <li><span><input class="form-control input-sm" type="text" name="search"></span></li>
+                <li><span><input class="form-control input-sm" type="submit" value="Search"></span></li>
+              </ul>
+            </form>
             <div class="pull-right">
               <ul class="pagination">
-                <li><a href="list">List</span></a></li>
+                <li><a href="list">List</a></li>
               </ul>
               <ul class="pagination">
                 <li class="dropdown">
@@ -200,17 +207,29 @@ function next_date($date){
               </thead>
               <tbody>
                <?php
+               
+               $grand_total = 0;
+               
+                $sql = "SELECT * FROM " . PREFIX . "data WHERE Program='" . $program['ID'] . "'";
+                
+                if(!isset($_GET['search'])){
+                    $sql .= " AND ( Signout LIKE '%$date%' OR Signin LIKE '%$date%' )";
+                }else{
+                    $query = $_GET['search'];
+                    $sql .= " AND Name LIKE '%$query%'";
+                }
+               
                 if(isset($_GET['sort'])){
                   $sort = $_GET['sort'];
                   if($sort != 'other'){
-                    $sql = "SELECT * FROM " . PREFIX . "data WHERE Program='" . $program['ID'] . "' AND Description='$sort' AND ( Signout LIKE '%$date%' OR Signin LIKE '%$date%' ) ORDER BY ID ASC";
+                    $sql .= " AND Description='$sort'";
                   }else{
-                    $sql = "SELECT * FROM " . PREFIX . "data WHERE Program='" . $program['ID'] . "' AND Description LIKE 'Other:%' AND ( Signout LIKE '%$date%' OR Signin LIKE '%$date%' ) ORDER BY ID ASC";
+                    $sql .= " AND Description LIKE 'Other:%'";
                   }
-                }else{
-                      $sql = "SELECT * FROM " . PREFIX . "data WHERE Program='" . $program['ID'] . "' AND Signout LIKE '%$date%' OR Signin LIKE '%$date%' ORDER BY ID ASC";
                 }
-                
+                  
+                $sql .= " ORDER BY ID ASC";
+                    
                 $result = $conn->query($sql);
                 
                 $count=0;
@@ -237,10 +256,12 @@ function next_date($date){
                       }else{
                           $CheckOut = date("g:i:s A", strtotime($CheckOut));
                           if($CheckIn != "---"){
-                          $total = round(abs(strtotime($CheckOut) - strtotime($CheckIn)) / 60,1). " Minute(s)";
+                            $total_time = round(abs(strtotime($CheckOut) - strtotime($CheckIn)) / 60,1);
+                          $total = $total_time . " Minute(s)";
                           }else{
                              $total = "---";
                           }
+                          $grand_total = $grand_total + $total_time;
                       }
                       
                       
@@ -277,6 +298,26 @@ function next_date($date){
                ?>
               </tbody>
               </table>
+              <h3>
+                <span class="label label-default">
+                  <?php
+                    if($grand_total < 60){
+                      $label = " Minute";
+                      if($grand_total != 1){
+                        $label .= "s"; 
+                      }
+                      echo $grand_total . $label;
+                    }else{
+                      $label = " Hour";
+                      if($grand_total != 1){
+                        $label .= "s"; 
+                      }
+                      $grand_hrs = $grand_total / 60;
+                      echo round($grand_hrs,1) . $label;
+                    }
+                  ?>
+                </span>
+              </h3>
           </div>
         </div>
         <?php } ?>
