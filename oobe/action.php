@@ -21,7 +21,7 @@ switch($_POST['install_step']){
         
         define('SERVER', '" . $SERVER . "');
         define('USER', '" . $USER . "');
-        define('PASSWORD', '" . $PASSWORD . "');
+        define('PASSWORD', '" . $PASS . "');
         define('DB', '" . $DB . "');
         define('PREFIX', '" . $PREFIX . "_');
         ";
