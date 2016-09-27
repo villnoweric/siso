@@ -42,6 +42,16 @@ switch($_GET['page']){
                 }
                 $conn->close();
                 break;
+            case 'delete':
+                $sql = "DELETE FROM " . PREFIX . "users WHERE ID='" . $_GET['content'] . "'";
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./admin/users/');
+                    die;
+                } else {
+                    echo "Error updating record: " . $conn->error;
+                }
+                $conn->close();
+                break;
             case 'remove':
                 
                 

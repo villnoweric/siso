@@ -151,6 +151,7 @@ if(isset($_GET['referal'])){
           <?php if(user_info('ID') != $user){ ?>
           <h3>Permissions</h3>
             <?php if($row['ROLE'] != 1){ ?><a href="<?= PATH ?>/action.php?page=users&action=makeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Administrator</a><?php }else{ ?><a href="<?= PATH ?>/action.php?page=users&action=removeadmin&content=<?= $row['ID'] ?>" class="btn btn-info">Make Standard User</a><?php } ?>
+          <br><br><a href="<?= PATH ?>/action.php?page=users&action=delete&content=<?= $row['ID'] ?>" class="btn btn-danger">DELETE USER</a>
           <?php }else{ echo '<div class="alert alert-warning">You cannot change your own settings.</div>'; } } ?>
         </div>
       </div>
