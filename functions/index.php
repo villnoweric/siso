@@ -15,10 +15,15 @@ function user_role(){
     return 1;
 }
 
-if(!isset($_COOKIE['USERNAME'])){
+
 
 function logged_in(){
-    $sql="SELECT * FROM " . PREFIX . "users WHERE username='" . $_COOKIE['USERNAME'] . "' AND password='" . $_COOKIE['PASSWORD'] . "'";
+    if(isset($_COOKIE['USERNAME'])){
+        $sql="SELECT * FROM " . PREFIX . "users WHERE username='" . $_COOKIE['USERNAME'] . "' AND password='" . $_COOKIE['PASSWORD'] . "'";
+    }else{
+        $sql="SELECT * FROM " . PREFIX . "users WHERE username='' AND password=''";
+    }
+    
     $result=mysqli_query($GLOBALS['conn'],$sql);
     if(mysqli_num_rows($result) > 0){
         return true;
@@ -36,8 +41,6 @@ function user_info($info){
         return $row[$info];
     } else {
     }   
-}
-
 }
 
 ?>
