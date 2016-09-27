@@ -102,7 +102,7 @@
                     </div>
                 </div><?php }; ?>
                 <div class="row">
-                    <h2 class="form-signin-heading"><center><?= $program['ID']; ?></center></h2>
+                    <h2 class="form-signin-heading"><center><?= $program['name']; ?></center></h2>
                 </div>
                 &nbsp;
                 <div class="form-group">
