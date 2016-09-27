@@ -87,9 +87,9 @@ if(user_info('role') != 1){
           <?php if(user_role() == 1){ ?>
           <ul class="nav nav-sidebar">
             <li<?php if(empty($_GET['page'])) { echo ' class="active"';} ?>><a href="<?= PATH ?>/">Overview <span class="sr-only">(current)</span></a></li>
-            <li<?php if($_GET['page']=='users') { echo ' class="active"';} ?>><a href="<?= PATH ?>/admin/users">Users</a></li>
-            <li<?php if($_GET['page']=='programs') { echo ' class="active"';} ?>><a href="<?= PATH ?>/admin/programs">Programs</a></li>
-            <li<?php if($_GET['page']=='kiosks') { echo ' class="active"';} ?>><a href="<?= PATH ?>/admin/kiosks">Kiosks</a></li>
+            <li<?php if(isset($_GET['page'])){ if($_GET['page']=='users') { echo ' class="active"';} } ?>><a href="<?= PATH ?>/admin/users">Users</a></li>
+            <li<?php if(isset($_GET['page'])){ if($_GET['page']=='programs') { echo ' class="active"';} } ?>><a href="<?= PATH ?>/admin/programs">Programs</a></li>
+            <li<?php if(isset($_GET['page'])){ if($_GET['page']=='kiosks') { echo ' class="active"';} } ?>><a href="<?= PATH ?>/admin/kiosks">Kiosks</a></li>
           </ul>
           <?php } ?>
         </div>
