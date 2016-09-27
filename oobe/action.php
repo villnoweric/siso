@@ -16,7 +16,7 @@ switch($_POST['install_step']){
         $DB = $_POST['db_db'];
         $PREFIX = $_POST['db_prefix'];
         
-        $dbconfig = fopen("../config/db.php", "w");
+        $dbconfig = fopen(__DIR__. "/../config/db.php", "w");
         $config = "<?php
         
         define('SERVER', '" . $SERVER . "');
@@ -29,7 +29,7 @@ switch($_POST['install_step']){
         fwrite($dbconfig, $config);
         fclose($dbconfig);
         
-        require_once('../config/db.php');
+        require_once(__DIR__. '/../config/db.php');
         $conn = mysqli_connect(SERVER, USER, PASSWORD, DB);
         
         // sql to create table
@@ -116,7 +116,7 @@ switch($_POST['install_step']){
         $_SESSION['admin_password'] = $_POST['admin_password'];
         $_SESSION['admin_email'] = $_POST['admin_email'];
         
-        $districtconfig = fopen("../config/district.php", "w");
+        $districtconfig = fopen(__DIR__. "/../config/district.php", "w");
         $config = "<?php
         
         define('DISTRICT_NAME', '" . $_SESSION['district_name'] . "');
@@ -131,7 +131,7 @@ switch($_POST['install_step']){
         $pass_hash = md5($_SESSION['admin_password']);
         $array = array();
         
-        require_once('../config/db.php');
+        require_once(__DIR__. '/../config/db.php');
         $conn = mysqli_connect(SERVER, USER, PASSWORD, DB);
         
         $sql = "INSERT INTO " . PREFIX . "users (USERNAME, FULLNAME, EMAIL, PASSWORD, ROLE, ACCESS)
