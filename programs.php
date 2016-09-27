@@ -181,7 +181,7 @@ function next_date($date){
                     <?php if($program['settings']['other'] == 1){ ?><li><a href="?date=<?php echo $date; ?>&sort=other">Other</a></li><?php } ?>
                   </ul>
                 </li>
-                <li><a href="export"><span class="glyphicon glyphicon-download-alt"></span></a></li>
+                <li><a href="<?= $_GET['program'] ?>/export?date=<?= $date ?>"><span class="glyphicon glyphicon-download-alt"></span></a></li>
               </ul>
               <ul class="pagination">
                 <?php previous_date($date); ?>
