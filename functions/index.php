@@ -15,6 +15,8 @@ function user_role(){
     return 1;
 }
 
+if(!isset($_COOKIE['USERNAME'])){
+
 function logged_in(){
     $sql="SELECT * FROM " . PREFIX . "users WHERE username='" . $_COOKIE['USERNAME'] . "' AND password='" . $_COOKIE['PASSWORD'] . "'";
     $result=mysqli_query($GLOBALS['conn'],$sql);
@@ -34,6 +36,8 @@ function user_info($info){
         return $row[$info];
     } else {
     }   
+}
+
 }
 
 ?>
