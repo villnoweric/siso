@@ -108,7 +108,7 @@ if(!isset($_COOKIE['KIOSK_ID'])){
     <title><?= DISTRICT_NAME ?> Kiosk</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= PATH ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <script>
     
