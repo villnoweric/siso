@@ -3,6 +3,9 @@
 require_once('functions/index.php');
 
 if(isset($_GET['register'])){
+    if(empty($_GET['name'])){
+         header('Location: ' . PATH . '/kiosk?error=1');
+    }else{
     $name = addslashes($_GET['name']);
     $id = rand(1111, 9999);
     $time = $_GET['register'];
@@ -22,9 +25,9 @@ if(isset($_GET['register'])){
         die();
     }
     
-   header('Location: ' . PATH . '/kiosk');
+    header('Location: ' . PATH . '/kiosk');
+    }
 }
-
 if(isset($_GET['unregister'])){
   
     $cookie = $_COOKIE['KIOSK_ID'];
@@ -59,6 +62,7 @@ if(isset($_COOKIE['KIOSK_ID'])){
 }
 
 if(!isset($_COOKIE['KIOSK_ID'])){
+    
     $body = '<form method="get"><div class="form-group">
     <div class="col-md-4">
           <label for="sel1">Friendly Name</label>
@@ -80,6 +84,11 @@ if(!isset($_COOKIE['KIOSK_ID'])){
           </select><br>
           <input type="submit" value="Register" class="btn">
         </div></div></form>';
+    
+    if(isset($_GET['error'])){
+        $body = '<div class="alert alert-danger" role="alert">You need to have a Friendly Name</div>' . $body;
+    }
+    
     $title = "Device Not Registered";
 }else{
     $title =  DISTRICT_NAME . "<div class='pull-right'>" . $_COOKIE['KIOSK_ID'] . "</div>";
