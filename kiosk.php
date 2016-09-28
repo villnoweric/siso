@@ -80,7 +80,7 @@ if(!isset($_COOKIE['KIOSK_ID'])){
           </select><br>
           <input type="submit" value="Register" class="btn">
         </div></div></form>';
-    $title = "Divice Not Registered";
+    $title = "Device Not Registered";
 }else{
     $title =  DISTRICT_NAME . "<div class='pull-right'>" . $_COOKIE['KIOSK_ID'] . "</div>";
     $body = "<a href='./kiosk' class='btn btn-success'>Refresh</a><br><br>";
