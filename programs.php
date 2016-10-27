@@ -146,7 +146,8 @@ function next_date($date){
               }
               if ($result->num_rows == 1) {
                 if(empty($_GET['program'])){
-                header('Location: /programs/' . $forward);
+                //header('Location: /programs/' . $forward);
+                echo '<script type="text/javascript">window.location = "/programs/' . $forward . '";</script>';
                 }
               }
             ?>
