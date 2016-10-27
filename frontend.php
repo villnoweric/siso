@@ -15,7 +15,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <meta name="viewport" content="width=500px, height=200px, initial-scale=2, user-scalable = no">
+    <script>
     
+    function navigator_Go(url) {
+        window.location.assign(url); // This technique is almost exactly the same as a full <a> page refresh, but it prevents Mobile Safari from jumping out of full-screen mode
+    }
+    </script>
     
     <link rel="icon" href="/favicon.ico">
     <title><?php echo $title; ?></title>
@@ -102,7 +107,7 @@
                     </div>
                 </div><?php }; ?>
                 <div class="row">
-                    <h2 class="form-signin-heading"><center><a href="./"><?= $program['name']; ?></a></center></h2>
+                    <h2 class="form-signin-heading"><center><a href="javascript:navigator_Go('./')"><?= $program['name']; ?></a></center></h2>
                 </div>
                 &nbsp;
                 <div class="form-group">

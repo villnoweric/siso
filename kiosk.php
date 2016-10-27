@@ -92,7 +92,7 @@ if(!isset($_COOKIE['KIOSK_ID'])){
     $title = "Device Not Registered";
 }else{
     $title =  DISTRICT_NAME . "<div class='pull-right'>" . $_COOKIE['KIOSK_ID'] . "</div>";
-    $body = "<a href='./kiosk' class='btn btn-success'>Refresh</a><br><br>";
+    $body = "<a href=\"javascript:navigator_Go('" . PATH . "/kiosk')\" class='btn btn-success'>Refresh</a><br><br>";
 }
 ?>
 
@@ -102,7 +102,7 @@ if(!isset($_COOKIE['KIOSK_ID'])){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <link rel="apple-touch-icon" href="/ic_launcher.png">
     <?php if(isset($_COOKIE['KIOSK_ID'])){ ?><!--<meta http-equiv="refresh" content="3">--><?php } ?>
 
     <title><?= DISTRICT_NAME ?> Kiosk</title>
@@ -114,6 +114,10 @@ if(!isset($_COOKIE['KIOSK_ID'])){
     
     function navigator_Go(url) {
         window.location.assign(url); // This technique is almost exactly the same as a full <a> page refresh, but it prevents Mobile Safari from jumping out of full-screen mode
+    }
+    
+    function blockMove() {
+        event.preventDefault() ;
     }
     </script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
