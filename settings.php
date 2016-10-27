@@ -179,7 +179,7 @@ $program['settings'] = unserialize($program['settings']);
                   while($row = $result->fetch_assoc()) {
                     
                       if(in_array($row['apid'], $kiosks)){
-                        $button = "<a class='btn btn-danger' href='" . PATH . "action.php?page=settings&action=remove&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Remove</a>";
+                        $button = "<a class='btn btn-danger' href='" . PATH . "/action.php?page=settings&action=remove&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Remove</a>";
                       }else{
                         $button = "<a class='btn btn-success' href='" . PATH . "/action.php?page=settings&action=add&program=" . $_GET['program'] . "&content=" . $row['apid'] . "'>Add</a>";
                       }
