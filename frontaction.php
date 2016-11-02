@@ -1,5 +1,5 @@
 <?php
-echo '9.';
+//echo '9.';
 //GET DB
 require_once('functions/index.php');
 
@@ -18,7 +18,7 @@ if(empty($_POST['Reason'])){
     header('Location: ./kiosk/' . $_POST['redirect'] . '?m=5');
     die;
 }
-echo '10.';
+//echo '10.';
 //GETS SETTINGS OFF DB
 $program_sql = "SELECT * FROM " . PREFIX . "programs WHERE ID='" . $_POST['program'] . "'";
 $program_result = $conn->query($program_sql);
@@ -91,7 +91,7 @@ if($program['settings']['order'] == '1'){
             die;
         }else{
             if($si == 1 && $so == 0){
-                echo '6';
+                //echo '6';
                 $sql = "UPDATE " . PREFIX . "data SET Signout='$Time' WHERE Name='$Name' AND Program='$Program' AND ( '$Check_Time' <= Signin AND Signin < '$Check_Time' ) AND Signout IS NULL";
                 if ($conn->query($sql) === TRUE) {
                     header('Location: ./kiosk/' . $_POST['redirect']);
@@ -109,7 +109,7 @@ if($program['settings']['order'] == '1'){
         }
     }
 }else{
-    echo '9';
+    //echo '9';
     //Attendance
     if($task == 'in'){
         if($instances == 0){
