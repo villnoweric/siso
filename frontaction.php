@@ -92,7 +92,7 @@ if($program['settings']['order'] == '1'){
         }else{
             if($si == 1 && $so == 0){
                 //echo '6';
-                $sql = "UPDATE " . PREFIX . "data SET Signout='$Time' WHERE Name='$Name' AND Program='$Program' AND ( '$Check_Time' <= Signin AND Signin < '$Check_Time' ) AND Signout IS NULL";
+                $sql = "UPDATE " . PREFIX . "data SET Signout='$Time' WHERE Name='$Name' AND Program='$Program' AND DATE_FORMAT(Signin, '%Y-%m-%d')='$Check_Time' AND Signout IS NULL";
                 if ($conn->query($sql) === TRUE) {
                     header('Location: ./kiosk/' . $_POST['redirect']);
                     die;
