@@ -166,10 +166,10 @@ function next_date($date){
             </form>
             <div class="pull-right">
               <ul class="pagination">
-                <?php if($_GET['list']==0){
-                  echo '<li><a href="?date=<?php echo $date; ?>&list=1">List All Days</a></li>';
+                <?php if(isset($_GET['list']) && $_GET['list']!==1){
+                  echo '<li><a href="?date=' . $date . '&list=1">List All Days</a></li>';
                 }else{
-                echo '<li><a href="?date=<?php echo $date; ?>&list=0">List</a></li>';
+                echo '<li><a href="?date=' . $date . '&list=0">List</a></li>';
                 }
                 ?>
               </ul>
