@@ -68,7 +68,7 @@ if($program['settings']['order'] == '1'){
                 //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
             }
             if ($conn->query($sql) === TRUE) {
-                header('Location: ./kiosk/' . $_POST['redirect']);
+                header('Location: ./kiosk/' . $_POST['redirect'] . '?m=2');
                 die;
             } else {
                 echo "Error updating record: " . $conn->error;
@@ -94,7 +94,7 @@ if($program['settings']['order'] == '1'){
                 //echo '6';
                 $sql = "UPDATE " . PREFIX . "data SET Signout='$Time' WHERE Name='$Name' AND Program='$Program' AND DATE_FORMAT(Signin, '%Y-%m-%d')='$Check_Time' AND Signout IS NULL";
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: ./kiosk/' . $_POST['redirect']);
+                    header('Location: ./kiosk/' . $_POST['redirect'] . '?m=3');
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -120,7 +120,7 @@ if($program['settings']['order'] == '1'){
                 //$sql = "INSERT INTO " . PREFIX . "data (Name, Signature, Signin, Description, Program) VALUES ('$Name', '$Signature' '$Time', '$Reason', '$Program')";
             }
             if ($conn->query($sql) === TRUE) {
-                header('Location: ./kiosk/' . $_POST['redirect']);
+                header('Location: ./kiosk/' . $_POST['redirect'] . 'm=3');
                 die;
             } else {
                 echo "Error updating record: " . $conn->error;
@@ -133,9 +133,9 @@ if($program['settings']['order'] == '1'){
                 header('Location: ./kiosk/' . $_POST['redirect'] . '?m=8');
                 die;
             }elseif($si == 0 && $so == 1){
-                $sql = "UPDATE " . PREFIX . "data SET Signin='$Time' WHERE Name='$Name' AND Program='$Program' AND Signout LIKE '%$Check_Time%' AND Signin IS NULL";
+                $sql = "UPDATE " . PREFIX . "data SET Signin='$Time' WHERE Name='$Name' AND Program='$Program' AND DATE_FORMAT(Signout, '%Y-%m-%d')='$Check_Time' AND Signin IS NULL";
                 if ($conn->query($sql) === TRUE) {
-                    header('Location: ./kiosk/' . $_POST['redirect']);
+                    header('Location: ./kiosk/' . $_POST['redirect'] . '?m=2');
                     die;
                 } else {
                     echo "Error updating record: " . $conn->error;
