@@ -157,6 +157,7 @@ function next_date($date){
         <?php if(!empty($_GET['program'])){ ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="clearfix">
+            <?php if(!isset($_GET['list'])){ ?>
             <form method="get" style="display:inline-block;">
               <input type="hidden" name="date" value="<?= $date ?>">
               <ul class="pagination">
@@ -164,17 +165,24 @@ function next_date($date){
                 <li><span><input class="form-control input-sm" type="submit" value="Search"></span></li>
               </ul>
             </form>
+            <?php } ?>
             <div class="pull-right">
               <ul class="pagination">
-                <?php if(isset($_GET['list']) && $_GET['list']!==1){
+                <?php 
+                if(isset($_GET['list'])){
+                  echo '<li><a href="?date=' . $date . '">Cancel</a></li>';
+                }
+                if(isset($_GET['list']) && $_GET['list']!=1){
                   echo '<li><a href="?date=' . $date . '&list=1">List All Days</a></li>';
+                }elseif($_GET['list']==1){
+                  echo '<li><a href="?date=' . $date . '&list=0">List Today</a></li>';
                 }else{
                 echo '<li><a href="?date=' . $date . '&list=0">List</a></li>';
                 }
                 ?>
               </ul>
               <ul class="pagination">
-                <li class="dropdown">
+                <?php if(!isset($_GET['list'])){ ?><li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="?date=<?php echo $date; ?>">All</a></li>
@@ -186,7 +194,7 @@ function next_date($date){
                     ?>
                     <?php if($program['settings']['other'] == 1){ ?><li><a href="?date=<?php echo $date; ?>&sort=other">Other</a></li><?php } ?>
                   </ul>
-                </li>
+                </li><?php } ?>
                 <li><a href="<?= $_GET['program'] ?>/export?date=<?= $date ?>"><span class="glyphicon glyphicon-download-alt"></span></a></li>
               </ul>
               <ul class="pagination">
