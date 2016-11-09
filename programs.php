@@ -166,7 +166,12 @@ function next_date($date){
             </form>
             <div class="pull-right">
               <ul class="pagination">
-                <li><a href="list">List</a></li>
+                <?php if($_GET['list']==0){
+                  echo '<li><a href="?date=<?php echo $date; ?>&list=1">List All Days</a></li>';
+                }else{
+                echo '<li><a href="?date=<?php echo $date; ?>&list=0">List</a></li>';
+                }
+                ?>
               </ul>
               <ul class="pagination">
                 <li class="dropdown">
@@ -214,7 +219,9 @@ function next_date($date){
                 $sql = "SELECT * FROM " . PREFIX . "data WHERE Program='" . $program['ID'] . "'";
                 
                 if(!isset($_GET['search'])){
+                  if($_GET['list']!=1){
                     $sql .= " AND ( Signout LIKE '%$date%' OR Signin LIKE '%$date%' )";
+                  }
                 }else{
                     $query = $_GET['search'];
                     $sql .= " AND Name LIKE '%$query%'";
@@ -227,6 +234,10 @@ function next_date($date){
                   }else{
                     $sql .= " AND Description LIKE 'Other:%'";
                   }
+                }
+                
+                if(isset($_GET['list'])){
+                    $sql .= " AND Signout IS NULL";
                 }
                   
                 $sql .= " ORDER BY ID ASC";
@@ -283,7 +294,13 @@ function next_date($date){
                       echo "<td>" . $CheckOut . "</td>";
                       if($program['settings']['duration'] == 1){ echo "<td>" . $total . "</td>"; }
                       echo "<td>" . $row['Description'] . "</td>";
-                      echo "<td><a class='mdi-action-delete' href='action.php?action=delete&value=" . $row['ID'] . "&date=" . $date . "'></a>";
+                      echo "<td>";
+                      if($CheckOut=='---'){
+                        echo "<a class='btn btn-info' href='../action.php?page=data&action=so&id=" . $row['ID'] . "&redir=" . $_GET['program'] . "'>Sign Out</a> ";
+                      }
+                      if(!isset($_GET['list'])){
+                        echo "<a class='btn btn-danger' href='../action.php?page=data&action=delete&id=" . $row['ID'] . "&redir=" . $_GET['program'] . "'>Delete</a>";
+                      }
                       if($row['Verify'] == 0){
                         echo "<a class='mdi-toggle-check-box-outline-blank' href='action.php?action=verify&value=" . $row['ID'] . "&date=" . $date . "'></a>";
                       }else{

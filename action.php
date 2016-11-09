@@ -230,4 +230,31 @@ switch($_GET['page']){
                 break;
         }
         break;
+    case 'data':
+        switch($_GET['action']){
+            case 'delete':
+                $sql = "DELETE FROM " . PREFIX . "data WHERE ID=" . $_GET['id'];
+
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./programs/' . $_GET['redir']);
+                    die;
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+                $conn->close();
+                break;
+            case 'so':
+                $Time = date('Y-m-d H:i:s');
+                $sql = "UPDATE " . PREFIX . "data SET Signout = '$Time' WHERE ID=" . $_GET['id'];
+
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./programs/' . $_GET['redir']);
+                    die;
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+                $conn->close();
+                break;
+        }
+        break;
 }
