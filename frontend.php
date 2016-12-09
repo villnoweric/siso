@@ -38,14 +38,27 @@
         window.location.assign(url); // This technique is almost exactly the same as a full <a> page refresh, but it prevents Mobile Safari from jumping out of full-screen mode
     }
     </script>
-	<script type="text/javascript">
-    function CheckColors(val){
-     var element=document.getElementById('inputReason');
-     if(val=='Other')
-       element.style.display='block';
-     else  
-       element.style.display='none';
-    }
+    <?php if($program['settings']['other_only']){ ?>
+	    <script>
+	        $( document ).ready(function() {
+	            var element=document.getElementById('inputReason');
+	            var select=document.getElementById('select');
+	            select.style.display='none';
+	            element.style.display='block';
+	        });
+	    </script>
+    <?php }else{ ?>
+        <script type="text/javascript">
+        function CheckColors(val){
+         var element=document.getElementById('inputReason');
+         if(val=='Other')
+           element.style.display='block';
+         else  
+           element.style.display='none';
+        }
+        </script>
+    <?php } ?>
+    <script>
     
     function blockMove() {
         event.preventDefault() ;
@@ -117,20 +130,24 @@
                 </div>
                 <div class="form-group">
                     <select class="form-control" name="Reason" id="select" onchange='CheckColors(this.value);'>
-                        <option selected disabled>Select a <?= $program['settings']['desc_title']; ?></option>
+                        <option <?php if(!$program['settings']['other_only']){ echo 'selected '; } ?>disabled>Select a <?= $program['settings']['desc_title']; ?></option>
                         <?php
                             foreach($program['settings']['descs'] as $value){
                                 echo "<option>" . $value . "</option>";
                             }
                         if($program['settings']['other'] == 1){
-                            echo '<option>Other</option>';
+                            if($program['settings']['other_only']){ 
+                                echo '<option selected>Other</option>';
+                            }else{
+                                echo '<option>Other</option>';
+                            }
                         }
                         
                         ?>
                     </select>
                 </div>
                 <div class="form-group">
-                        <input type="text" name="otherReason" class="form-control" id="inputReason" placeholder="Other <?= $program['settings']['desc_title']; ?>" autocomplete="off">
+                        <input type="text" name="otherReason" class="form-control" id="inputReason" placeholder="<?php if(!$program['settings']['other_only']){ echo 'Other'; } ?> <?= $program['settings']['desc_title']; ?>" autocomplete="off">
                 </div>
                 
                 <?php if($program['settings']['signature']){ ?><div id="signature"></div><?php } ?>

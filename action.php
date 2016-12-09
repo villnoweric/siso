@@ -215,6 +215,7 @@ switch($_GET['page']){
                 $programs['require_first'] = $_GET['require_first'];
                 $programs['order'] = $_GET['order'];
                 $programs['other'] = $_GET['other'];
+                $programs['other_only'] = $_GET['other_only'];
                 $programs['signature'] = $_GET['signature'];
                 $programs['duration'] = $_GET['duration'];
                 $programs['desc_title'] = $_GET['desc_title'];

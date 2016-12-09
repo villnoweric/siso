@@ -130,6 +130,8 @@ $program['settings'] = unserialize($program['settings']);
           <input type="hidden" name="other" value="0" />
           <input type="checkbox" name="other" value="1"<?php if($program['settings']['other'] == 1){ echo ' checked'; } ?>> Enable Other Option<br><br>
           
+          <input type="hidden" name="other_only" value="0" />
+          <input type="checkbox" name="other_only" value="1"<?php if($program['settings']['other_only'] == 1){ echo ' checked'; } ?>> Only Other Option<br><br>
           <input type="hidden" name="single_instance" value="0" />
           
           <input type="hidden" name="single_transaction" value="0" />
