@@ -130,7 +130,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                        <input type="text" name="otherReason" class="form-control" id="inputReason" placeholder="Other Reason" autocomplete="off">
+                        <input type="text" name="otherReason" class="form-control" id="inputReason" placeholder="Other <?= $program['settings']['desc_title']; ?>" autocomplete="off">
                 </div>
                 
                 <?php if($program['settings']['signature']){ ?><div id="signature"></div><?php } ?>
