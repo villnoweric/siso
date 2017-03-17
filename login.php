@@ -33,7 +33,7 @@ if(isset($_POST['username'])){
       header('Location: ./');
       die;
   }else{
-     $error = $conn->error;
+     $error = "Incorrect Login Information";
   }
   
 }
@@ -67,7 +67,7 @@ if(isset($_POST['username'])){
   <body>
 
     <div class="container">
-      <?php if(isset($error)){ echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';} ?>
+      <?php if(isset($error)){ echo '<div class="alert alert-danger" role="alert"><center>' . $error . '<center></div>';} ?>
       <h2 class="form-signin-heading"><?= DISTRICT_NAME ?></h2>
       <form class="form-signin" method="post">
         <label for="inputEmail" class="sr-only">Username</label>
