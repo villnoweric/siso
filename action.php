@@ -256,6 +256,21 @@ switch($_GET['page']){
                 }
                 $conn->close();
                 break;
+            case 'edit':
+                $in = $_GET['in'];
+                $out = $_GET['out'];
+                $name = $_GET['name'];
+                $desc = $_GET['desc'];
+                $sql = "UPDATE " . PREFIX . "data SET Signout = '$out' , Signin = '$in' , Name = '$name' , Description = '$desc' WHERE ID=" . $_GET['id'];
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: ./programs/' . $_GET['redir']);
+                    die;
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+                
+                $conn->close();
+                break;
         }
         break;
 }

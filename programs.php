@@ -314,6 +314,7 @@ function next_date($date){
                       }else{
                         echo "<a class='mdi-toggle-check-box' href='action.php?action=unverify&value=" . $row['ID'] . "&date=" . $date . "'></a>";
                       }
+                      echo " <a class='btn btn-warning' href='../dataedit.php?id=" . $row['ID'] . "&redir=" . $_GET['program'] . "'>Edit</a>";
                       echo "</td>";
                       echo "</tr>";
                     }

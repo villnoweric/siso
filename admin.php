@@ -94,7 +94,7 @@ if(user_info('role') != 1){
           <?php } ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <?php if(isset($_GET['page'])){ require_once(__DIR__ . '/templates/' . $_GET['page'] . '.php'); }else{ echo "TODO: Figgure out what to put here..."; } ?>
+          <?php if(isset($_GET['page'])){ require_once(__DIR__ . '/templates/' . $_GET['page'] . '.php'); }else{ echo "<div style='col-md-4'><div class='panel panel-default'><div class='panel-body'>Dashboard</div></div></div>"; } ?>
         </div>
       </div>
     </div>
